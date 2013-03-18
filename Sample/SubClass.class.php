@@ -1,6 +1,6 @@
 <?php
 /**
- * 该类包下的子类
+ * 瀛愮被
  * 
  * @author monkee<zomboo1@126.com>
  * @copyright 2013-2014

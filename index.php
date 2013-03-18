@@ -13,10 +13,11 @@
 include "shadow.php";
 
 //测试自动载入是否正常
-
 $autoClass = new Sample(); //测试主类是否正常
 $autoClass = new Sample_SubClass(); //测试各自类包里的子类是否正常
 $autoClass = new Sample_SubClass_SecClass(); //测试类包下的多级分类是否正常
+
+throw new SDException("Welcome to shadow");
 
 echo "如何写好一个PHP的类\n";
 echo "第一节：创建一个基础环境\n";

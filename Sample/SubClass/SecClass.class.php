@@ -1,6 +1,6 @@
 <?php
 /**
- * 该类包下的多级子类
+ * 浜岀骇瀛愮被
  * 
  * @author monkee<zomboo1@126.com>
  * @copyright 2013-2014

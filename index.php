@@ -12,14 +12,5 @@
 
 include "shadow.php";
 
-$test = new Test_Manage("Test_Case_A");
-
-$ret = $test->exec();
-
-foreach($ret as $result){
-	echo sprintf("## %s::%s\n", $result->className, $result->method);
-	foreach($result->cases as $case){
-		echo sprintf("\t%s => %s\n", $case['method']['type'], $case['isSucc'] ? 'succ' : 'err');
-	}
-	echo "\n";
-}
+echo "测试基类的原理";
+exit;

@@ -3,25 +3,26 @@
  * 
  */
 include "shadow.php";
-class Test_A extends Test
-{
-	public function testEqual(){
-		$this->isEqual(1, 2);
-	}
-	
-	public function testAbsluteEqual(){
-		$this->isAbsluteEqual(0, false);
-	}
+
+$testClass = '';
+if(!empty($argv)){
+	$testClass = $argv[1];
+}elseif(!empty($_GET)){
+	$testClass = $_GET['test'];
 }
 
+if(empty($testClass)){
+	throw new SDException("Usage php test.php [test class name] OR test.php?test=[test class name]");
+}
 
-$test = new Test_A;
-$test->testEqual();
-$test->testAbsluteEqual();
+$test = new Test_Manage($testClass);
 
-echo sprintf("succ count:%d\n", $test->getSuccCount());
-echo sprintf("err count:%d\n", $test->getErrCount());
+$ret = $test->exec();
 
-$err = $test->getErrMethods();
-
-var_dump($err);
+foreach($ret as $result){
+	echo sprintf("## %s::%s\n", $result->className, $result->method);
+	foreach($result->cases as $case){
+		echo sprintf("\t%s => %s\n", $case['method']['type'], $case['isSucc'] ? 'succ' : 'err');
+	}
+	echo "\n";
+}

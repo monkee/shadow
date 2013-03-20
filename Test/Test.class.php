@@ -36,12 +36,20 @@ class Test
 	}
 	
 	/**
-	 * 判断变量是否为字符串
+	 * 判断变量的类型是否为所给的类型
 	 * 
 	 * @param mixed $v
+	 * @param string $type
 	 */
-	final protected function isString($v){
-		$this->recordResult(is_string($v));
+	final protected function isType($var, $type){
+		switch ($type){
+			case "num":
+				$type = 'numeric'; break;
+			case "str":
+				$type = "string"; break;
+		}
+		$func = "is_" . $type;
+		$this->recordResult($func($var));
 	}
 	
 	/**
@@ -72,6 +80,8 @@ class Test
 			'args' => $trace[2]['args'],
 			'type' => $trace[2]['function'],
 		);
+		
+		//$method = new Test_Method();
 		
 		return $method;
 	}

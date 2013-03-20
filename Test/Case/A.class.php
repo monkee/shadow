@@ -13,5 +13,6 @@ class Test_Case_A extends Test
 	public function testB(){
 		$this->isAbsluteEqual(1, 1);
 		$this->isAbsluteEqual(2, true);
+		$this->isType(2, 'int');
 	}
 }

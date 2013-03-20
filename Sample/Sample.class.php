@@ -9,5 +9,21 @@
  */
 class Sample
 {
+	public function __construct(){}
 	
+	public function getMyName(){
+		return "Monkee";
+	}
+	
+	public function getMyAge(){
+		return 128;
+	}
+	
+	public function isMale(){
+		return true;
+	}
+	
+	public function doLikeGirl(){
+		return true;
+	}
 }

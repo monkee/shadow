@@ -1,35 +1,33 @@
 <?php
 /**
- * 告诉你，欢迎你，输出Hello Monkee
+ * 这是一个欢迎的类包
+ * 
+ * 欢迎你开始学习这门课程
  * 
  * @author monkee
- * @time 2013-03-18 23:10
+ * @date 2013-03-20
  */
+
 
 class Hello
 {
-	/**
-	 * 名字
-	 * 
-	 * @var string
-	 */
 	private $name = '';
 	
 	/**
-	 * 构造函数
+	 * 使用你的名字来初始化
 	 * 
-	 * @param string $name 名字
+	 * @param string $name 你的名字
 	 */
-	public function __construct($name = "php"){
+	public function __construct($name = "stranger"){
 		$this->name = $name;
 	}
 	
 	/**
-	 * 说话
+	 * 说出来，交流一下
 	 * 
-	 * 输出字符串到终端（STDOUT）
+	 * 1. 会输出一段话
 	 */
 	public function say(){
-		echo sprintf("Hello, %s\n", $this->name);
+		echo sprintf("Welcome to shadow, %s\n", $this->name);
 	}
 }

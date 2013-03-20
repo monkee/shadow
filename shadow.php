@@ -62,6 +62,20 @@ function __sd_autoload($class){
  * @author monkee
  */
 class SDException extends Exception{
+	const FATAL = 100;	//不可接受的异常，通常会引起程序执行出错
+	const WANNING = 101;	//不建议使用的异常，通常会引起程序执行异常
+	const MESSAGE = 102;	//通常不影响程序正常执行，但为了提醒用户这些信息
+	
+	/**
+	 * 构造函数
+	 * 
+	 * @param string $message
+	 * @param int $code
+	 */
+	public function __construct($message, $code = self::WANNING){
+		parent::__construct($message, $code);
+	}
+	
 	/**
 	 * 当做string时的输出格式话
 	 * 

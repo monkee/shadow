@@ -12,6 +12,14 @@
 
 include "shadow.php";
 
-echo "如何写好一个PHP的类\n";
-echo "第二节：使用测试驱动开发（TDD）\n";
-echo "编写自己的测试基类：Test";
+$test = new Test_Manage("Test_Case_A");
+
+$ret = $test->exec();
+
+foreach($ret as $result){
+	echo sprintf("## %s::%s\n", $result->className, $result->method);
+	foreach($result->cases as $case){
+		echo sprintf("\t%s => %s\n", $case['method']['type'], $case['isSucc'] ? 'succ' : 'err');
+	}
+	echo "\n";
+}

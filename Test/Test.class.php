@@ -11,11 +11,7 @@
 
 class Test
 {
-	private $succCount = 0; //成功的次数
-	private $errCount = 0; //失败的次数
-	private $succMethods = array(); //成功的测试点
-	private $errMethods = array(); //失败的测试点
-	private $caseCount = 0; //测试点的个数，= $succCount + $errCount
+	private $cases = array(); //获取所有的测试
 	
 	public function __construct(){}
 	
@@ -51,24 +47,24 @@ class Test
 	/**
 	 * 统计结果
 	 * 
-	 * 1. 统计case的次数
-	 * 2. 获取case的调用方法、参数等数据
-	 * 3. 识别错误、成功
+	 * 1. 统计case的结果
 	 * 
 	 * @param boolean $result
 	 */
 	final protected function recordResult($result){
-		$this->caseCount++;
 		$method = $this->getCallMethod();
-		if($result){
-			$this->succCount++;
-			$this->succMethods[] = $method;
-		}else{
-			$this->errCount++;
-			$this->errMethods[] = $method;
-		}
+		$case = array(
+			'isSucc' => $result,
+			'method' => $method,
+		);
+		$this->cases[] = $case;
 	}
 	
+	/**
+	 * 获取调用的方法
+	 * 
+	 * @return array
+	 */
 	final private function getCallMethod(){
 		$trace = debug_backtrace();
 		$method = array(
@@ -86,41 +82,21 @@ class Test
 	 * @return int
 	 */
 	final public function getCaseCount(){
-		return $this->caseCount;
-	}
-	/**
-	 * 获取失败的次数
-	 * 
-	 * @return int
-	 */
-	final public function getErrCount(){
-		return $this->errCount;
+		return count($this->cases);
 	}
 	
 	/**
-	 * 获取成功的次数
-	 * 
-	 * @return int
+	 * 获取所有的case
 	 */
-	final public function getSuccCount(){
-		return $this->succCount;
+	final public function getAllCases(){
+		return $this->cases;
 	}
 	
 	/**
-	 * 获取成功的方法
+	 * 重置
 	 * 
-	 * @return array
 	 */
-	final public function getSuccMethods(){
-		return $this->succMethods();
-	}
-	
-	/**
-	 * 获取失败的方法
-	 * 
-	 * @return array
-	 */
-	final public function getErrMethods(){
-		return $this->errMethods;
+	final public function reset(){
+		$this->cases = array();
 	}
 }

@@ -12,5 +12,5 @@
 
 include "shadow.php";
 
-echo "测试基类的原理";
+echo "配置的读取";
 exit;

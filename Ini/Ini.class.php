@@ -4,7 +4,7 @@
  * 
  * 1. 对基本的ini文件的读取
  * 2. 在shadow中我们对此进行扩展
- * 3. 结合shadowe的情况给出特殊处理
+ * 3. 结合shadow的情况给出特殊处理
  * 
  * @author monkee
  * 
@@ -38,7 +38,7 @@ class Ini
 	 */
 	public function parse(){
 		$conf = @parse_ini_file($this->iniFile, true);
-		if(false === $conf){
+		if($conf === false){
 			throw new SDException($php_errormsg);
 		}
 		return $conf;

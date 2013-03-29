@@ -11,37 +11,35 @@
  * @todo 一个ini文件如何只被解析一次？
  * @todo 不同的地方调用的类情况下，ini文件也能保证只被解析一次
  */
-ini_set('track_errors', 1);
+
 class Ini
 {
-	/**
-	 * INI文件地址
-	 * 
-	 * @var string
-	 */
-	private $iniFile = null;
-	/**
-	 * 
-	 * Enter description here ...
-	 * @param string $iniFile
-	 */
-	public function __construct($iniFile = ''){
-		$this->iniFile = $iniFile;
-	}
-	
+	static private $cache = array();
 	/**
 	 * 解析，并返回解析结果
 	 * 
+	 * @param string $iniFile 被解析的配置文件
 	 * @return array
 	 * 
 	 * @throws SDException
 	 */
-	public function parse(){
-		$conf = @parse_ini_file($this->iniFile, true);
-		if($conf === false){
-			throw new SDException($php_errormsg);
+	static public function parse($iniFile){
+		$iniFile = realpath($iniFile);
+		
+		if($iniFile === false){
+			throw new SDException("ini file is not exist");
 		}
-		return $conf;
+		
+		if(!isset(self::$cache[$iniFile])){
+			Ini_Sys::set('track_errors', 1);
+			$conf = @parse_ini_file($iniFile, true);
+			if($conf === false){
+				throw new SDException($php_errormsg);
+			}
+			Ini_Sys::reset('track_errors');
+			self::$cache[$iniFile] = $conf;
+		}
+		return self::$cache[$iniFile];
 	}
 }
 

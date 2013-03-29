@@ -12,5 +12,7 @@
 
 include "shadow.php";
 
-echo "配置的读取";
+$file = "课程笔记/第五节：配置的读取（2）.md";
+
+echo sprintf("<pre>%s</pre>", file_get_contents($file));
 exit;

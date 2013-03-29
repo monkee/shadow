@@ -4,8 +4,9 @@ class Ini_Test_Ini extends Test
 	public function testParse1(){
 		$file = "Ini/conf/test.ini";
 		
-		$ini = new Ini($file);
-		$conf = $ini->parse();
+		$conf = Ini::parse($file);
+		$conf = Ini::parse($file);
+		$conf = Ini::parse($file);
 		
 		$this->isEqual($conf['key_a']['name'], "monkee");
 		$this->isEqual($conf['key_a']['age'], 120);
@@ -25,10 +26,8 @@ class Ini_Test_Ini extends Test
 		
 		//1. 测试配置文件不存在
 		try{
-			$ini = new Ini($file);
-			$conf = $ini->parse();
+			$conf = Ini::parse($file);
 		}catch(SDException $e){
-			//echo $e; exit;
 			$this->isEqual(1, 1);
 		}
 		

@@ -12,7 +12,7 @@
 
 include "shadow.php";
 
-$file = "课程笔记/第五节：配置的读取（2）.md";
+$file = "课程笔记/第六节：数据库连接器.md";
 
 echo sprintf("<pre>%s</pre>", file_get_contents($file));
 exit;

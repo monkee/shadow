@@ -2,13 +2,13 @@
 /**
  * 测试用例
  */
-class CodeGenerator_Test_Test extends Test
+class VarExport_Test_Test extends Test
 {
 	public function testConvToString(){
 		//1. 测试纯数字的一维数组
 		$array = array(1, null, false, true, 'b', 'c', 'd');
 		
-		echo CodeGenerator::convVarToString($array);
+		echo VarExport::convVarToString($array);
 		echo "\n";
 		//2. 测试纯数字的多维数组
 		$array = array(
@@ -17,14 +17,14 @@ class CodeGenerator_Test_Test extends Test
 			1, 2, 3, 'a', 'b', 'c', 'd'
 		);
 		
-		echo CodeGenerator::convVarToString($array);
+		echo VarExport::convVarToString($array);
 		echo "\n";
 		//3. 测试双引号、反斜杠等转义字符
 		$array = array(
 			"\t", "\n", "\\", "\"", "\r"
 		);
-		
-		echo CodeGenerator::convVarToString($array);
+		//var_export($array);
+		echo VarExport::convVarToString($array);
 		echo "\n";
 		exit;
 	}

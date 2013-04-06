@@ -6,9 +6,9 @@
  * 
  * @author monkee
  */
-class CodeGenerator
+class VarExport
 {
-	const TAB = "\t"; //TAB键的定义，可以定义为四个空格。如果考虑效率，可以定义为空。
+	const TAB = "  "; //TAB键的定义，可以定义为四个空格。如果考虑效率，可以定义为空。
 	
 	/**
 	 * 要进行转义的字符串集合
@@ -46,25 +46,12 @@ class CodeGenerator
 	 * @throws SDException
 	 */
 	static private function convVarToStringForItem($var, $indent = 0){
-		if(is_array($var)){
-			$str = "array(\n";
-			foreach($var as $k => $v){
-				$k = is_int($k) ? $k : '"' . self::escape($k) . '"';
-				$str .= sprintf("%s%s => %s,\n", str_repeat(self::TAB, $indent + 1), $k, self::convVarToStringForItem($v, $indent + 1));
-			}
-			$str .= str_repeat(self::TAB, $indent) . ")";
-			return $str;
-		}elseif(is_numeric($var)){
-			return strval($var);
-		}elseif(is_string($var)){
-			return sprintf("\"%s\"", self::escape($var));
-		}elseif(is_null($var)){
-			return "NULL";
-		}elseif(is_bool($var)){
-			return $var ? "TRUE" : "FALSE";
-		}else{
-			throw new SDException(sprintf("Useless var %s", gettype($var)));
+		$type = gettype($var);
+		$method = "convTypeOf" . $type;
+		if(method_exists(__CLASS__, $method)){
+			return self::$method($var, $indent);
 		}
+		throw new SDException(sprintf("Useless var %s", $type));
 	}
 	
 	/**
@@ -94,5 +81,39 @@ class CodeGenerator
 	 */
 	static private function escape($str){
 		return str_replace(array_keys(self::$escape), self::$escape, $str);
+	}
+	
+	/*************************************
+	 * PRIVATE STATIC METHOD
+	 *************************************
+	 */
+	static private function convTypeOfArray($var, $indent = 0){
+		$str = "array(\n";
+		foreach($var as $k => $v){
+			$k = is_int($k) ? $k : '"' . self::escape($k) . '"';
+			$str .= sprintf("%s%s => %s,\n", str_repeat(self::TAB, $indent + 1), $k, self::convVarToStringForItem($v, $indent + 1));
+		}
+		$str .= str_repeat(self::TAB, $indent) . ")";
+		return $str;
+	}
+	
+	static private function convTypeOfString($var, $indent = 0){
+		return '"' . self::escape($var) . '"';
+	}
+	
+	static private function convTypeOfInteger($var, $indent = 0){
+		return strval($var);
+	}
+	
+	static private function convTypeOfBoolean($var, $indent = 0){
+		return $var ? "TRUE" : "FALSE";
+	}
+	
+	static private function convTypeOfDouble($var, $indent = 0){
+		return strval($var);
+	}
+	
+	static private function convTypeOfNULL($var, $indent = 0){
+		return 'NULL';
 	}
 }

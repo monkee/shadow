@@ -12,7 +12,7 @@
 
 include "shadow.php";
 
-$file = "课程笔记/第八节：可扩展的类内方法设计.md";
+$file = "课程笔记/第十节：类的配置输出.md";
 
 echo sprintf("<pre>%s</pre>", file_get_contents($file));
 exit;

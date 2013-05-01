@@ -16,16 +16,15 @@
 6. 重构
 7. spl里的一些东西
 8. 敏捷的一些原则和实践
-9. 出此之外的其它知识
+9. 除此之外的其它知识
 
-课程地址：http://wenku.baidu.com/course/view/7cea0975f46527d3240ce003?fr=php100
+课程地址：http://wenku.baidu.com/course/view/7cea0975f46527d3240ce003
 
 于此同时，我个人也在不断学习中，有好的东西也会在这里和大家分享。
 
 ## 联系方式
-如果大家有任何与本课内容有关的话题，欢迎大家+我的微博或者微信。  
-我的微博名叫：偷蚊子的玩敏捷  
-微信名称：monkeehu 
+如果大家有任何与本课内容有关的话题，欢迎大家+我的微博。  
+我的微博名叫：偷蚊子的在百度  
 github : https://github.com/monkee/shadow  
 
 ## 类库介绍
@@ -36,3 +35,8 @@ github : https://github.com/monkee/shadow
 主类：类包内，与类包同名的类，我们称之为主类，它必须存在，且可以是这个类对外的接口类
 子类：类包内，除主类外，在类包下的其它类，我们称为子类
 多级子类：类包内，可以在子目录内出现的类，我们称为多级子类，如：Sample_Sub_Class就是一个二级子类（有两个“_”）
+
+## 课程讲义
+课程的讲义部分在：  
+[https://github.com/monkee/lessons/tree/master/如何写好一个PHP的类](https://github.com/monkee/lessons/tree/master/如何写好一个PHP的类)  
+给位可自行前往~

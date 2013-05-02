@@ -41,10 +41,9 @@ function __sd_autoload($class){
 		$classPath .= DS . $class;
 	}
 	$classPath = SD_ROOT . DS . $classPath . '.class.php';
-	if(!is_file($classPath)){
-		throw new SDException("Class {$class} is not defined,should be {$classPath}."); //或者有别的方案也行，比如：不作为
+	if(is_file($classPath)){
+		include_once $classPath;
 	}
-	include_once $classPath;
 }
 
 /**
